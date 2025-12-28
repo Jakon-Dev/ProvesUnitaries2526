@@ -92,6 +92,9 @@ public class MedicalPrescriptionTest {
     @Test
     void testInvalidEnumConstant() {
         String[] badInstructions = {"AFTER_MEALS", "1.0", "1.0", "1.0", "HOUR", "Error"};
-        assertThrows(IllegalArgumentException.class, () -> prescription.addLine(prodID, badInstructions));
+
+        assertThrows(IncorrectTakingGuidelinesException.class, () ->
+                prescription.addLine(prodID, badInstructions)
+        );
     }
 }
