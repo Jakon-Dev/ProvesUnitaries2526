@@ -1,10 +1,14 @@
 package medicalconsultation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test suite for the {@link TakingGuideline} class.
+ * Verifies the correct initialization of medical guidelines, the state changes via setters,
+ * and the management of the internal Posology object.
+ */
 public class TakingGuidelineTest {
     private TakingGuideline guideline;
 
@@ -15,6 +19,9 @@ public class TakingGuidelineTest {
     private final FqUnit FREQ_UNIT = FqUnit.HOUR;
     private final String INSTRUCTIONS = "Tomar con abundante agua";
 
+    /**
+     * Initializes a default TakingGuideline instance before each test.
+     */
     @BeforeEach
     void setUp() {
         guideline = new TakingGuideline(
@@ -27,6 +34,10 @@ public class TakingGuidelineTest {
         );
     }
 
+    /**
+     * Verifies that the constructor correctly maps all parameters to their respective fields,
+     * including the automatic creation of the internal Posology object.
+     */
     @Test
     void testConstructorInitializesFieldsCorrectly() {
         assertAll("Verificación de campos del constructor",
@@ -43,6 +54,9 @@ public class TakingGuidelineTest {
         );
     }
 
+    /**
+     * Validates that setter methods correctly modify the guideline's state.
+     */
     @Test
     void testSettersModifyState() {
         guideline.setDuration(5.0f);
@@ -55,6 +69,10 @@ public class TakingGuidelineTest {
         assertEquals("Nueva instrucción", guideline.getInstructions(), "Las instrucciones no se actualizaron");
     }
 
+    /**
+     * Ensures that replacing the Posology instance updates the guideline
+     * and maintains object identity.
+     */
     @Test
     void testSetPosologyReplacesInstance() {
         Posology newPosology = new Posology(2.0f, 12.0f, FqUnit.HOUR);
