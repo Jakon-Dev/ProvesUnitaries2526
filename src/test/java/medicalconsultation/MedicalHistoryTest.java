@@ -101,12 +101,15 @@ class MedicalHistoryTest {
 
     /**
      * Tests the system's robustness against invalid enumeration strings (e.g., dayMoment).
-     * Verifies that an {@link IllegalArgumentException} is thrown when a
-     * malformed enum constant is provided in the instructions.
+     * Verifies that an {@link IncorrectTakingGuidelinesException} is thrown (wrapping the
+     * original IllegalArgumentException) when a malformed enum constant is provided.
      */
     @Test
     void testInvalidEnumConstant() {
         String[] badInstructions = {"AFTER_MEALS", "1.0", "1.0", "1.0", "HOUR", "Error"};
-        assertThrows(IllegalArgumentException.class, () -> prescription.addLine(prodID, badInstructions));
+
+        assertThrows(IncorrectTakingGuidelinesException.class, () ->
+                prescription.addLine(prodID, badInstructions)
+        );
     }
 }
