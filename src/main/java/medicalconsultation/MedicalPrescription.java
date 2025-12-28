@@ -77,4 +77,5 @@ public class MedicalPrescription {
     // Getters necesarios para el servicio externo
     public HealthCardID getCip() { return cip; }
     public String getIllness() { return illness; }
+    public Date getPrescDate() { return prescDate;}
 }
